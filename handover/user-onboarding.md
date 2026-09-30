@@ -5,3 +5,5 @@ A 30-minute starting session: explain where authoritative content lives, demonst
 Practice tasks: find the fictional recovery procedure; create a draft with owner/review date; link an existing page; propose a correction; identify information that must remain in the secret vault. Validate reader and author views separately.
 
 Explain access requests, public-sharing restrictions, document ownership and review reminders. New users must know that outdated information should be flagged, not silently trusted. Gather feedback after two weeks and measure task completion against the baseline; adjust structure and training accordingly.
+
+Use the [five-space map](../governance/docmost-structure.md) to locate a system in `20 Systeme & Dienste`, follow its runbook link into `30 Workflow & Abläufe`, and find both templates under `00 Documentation → 90 - Vorlagen`. Explain the ordinary system overview table and [which changes need a documentation update](../governance/change-boundary.md).

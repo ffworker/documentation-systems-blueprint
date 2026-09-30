@@ -9,3 +9,5 @@ Suggested cadence: critical recovery and access runbooks every 90 days; ordinary
 Use a predictable hierarchy by domain/service/task, descriptive titles and a controlled small tag vocabulary. Separate task procedures from background explanations. Document prerequisites, expected outcomes, verification and rollback for every operational procedure.
 
 Secrets remain in a vault. Screenshots must be sanitized and should not replace searchable steps. A runbook is accepted when another qualified person can use it successfully, not when its author marks it complete.
+
+For the Docmost reference, apply the [five-space content structure](docmost-structure.md) and [GitHub/Docmost change boundary](change-boundary.md). Material operational changes trigger review; cosmetic UI changes and behavior-preserving refactors do not.
