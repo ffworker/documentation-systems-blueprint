@@ -29,3 +29,7 @@ Data persisted: database, uploaded files, Redis state and proxy state. Secrets/c
 This design accepts scheduled downtime and a single failure domain. Establish capacity from a representative pilot: concurrent editors, page and attachment volume, search latency, backup duration and growth. Add monitored storage headroom first. If recovery or uptime objectives cannot be met, evaluate managed storage/database, redundancy and the application's supported multi-instance architecture as a new ADR; do not merely add replicas.
 
 Every customer adaptation must specify residency, retention, authentication, edition/license, mail, network ingress/egress, ownership and recovery objectives. Start with [requirements](../evaluation/requirements.md).
+
+## Content architecture
+
+The [Docmost content model](../governance/docmost-structure.md) maps the five reference spaces, while the [implementation/operations boundary](../governance/change-boundary.md) prevents duplicate sources of truth. The baseline uses ordinary pages and tables and requires no paid features. A possible standalone local documentation intake assistant remains [future roadmap](../roadmap.md), outside the deployed architecture.

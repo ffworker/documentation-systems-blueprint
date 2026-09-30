@@ -9,6 +9,9 @@ Reviewed 2026-09-30. Upstream documentation evolves; check again when selecting 
 | [Compose at v0.96.0](https://github.com/docmost/docmost/blob/v0.96.0/docker-compose.yml) | PostgreSQL 18 mount layout, Redis 8, storage path |
 | [Environment variables](https://docmost.com/docs/self-hosting/environment-variables) | Application URL, secrets, storage and SMTP |
 | [Docmost import/export](https://docmost.com/docs/user-guide/import-export) | Markdown/HTML transfer; validate fidelity in pilot |
+| [Docmost Bases](https://docmost.com/docs/user-guide/bases) | Bases require a commercial license; ordinary table pages keep the baseline free-edition compatible |
+| [Docmost editions](https://docmost.com/docs/editions) | Open Source, Business and Enterprise distinction |
+| [Docmost introduction](https://docmost.com/docs/) | Paid AI and API features are not baseline dependencies |
 | [Docmost self-hosting](https://docmost.com/docs/category/self-hosting) | Navigation to current license and edition information |
 | [BookStack export/import](https://www.bookstackapp.com/docs/user/export-import/) | Export formats; exports are not application backups |
 | [Caddy reverse proxy](https://caddyserver.com/docs/caddyfile/directives/reverse_proxy) | HTTP and WebSocket proxy behavior |
