@@ -1,0 +1,26 @@
+# Requires Compose 2.24.4+ for !reset. Use with compose.yaml.
+services:
+  docmost:
+    ports: !reset []
+  proxy:
+    image: ${CADDY_IMAGE:?Set CADDY_IMAGE}
+    restart: unless-stopped
+    environment:
+      DOCS_DOMAIN: ${DOCS_DOMAIN:?Set DOCS_DOMAIN}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./reverse-proxy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks: [edge]
+    depends_on: [docmost]
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+volumes:
+  caddy_data: {}
+  caddy_config: {}

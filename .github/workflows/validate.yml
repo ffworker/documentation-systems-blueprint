@@ -1,0 +1,17 @@
+name: Validate blueprint
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  structural-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - name: Check structure and relative links
+        run: python3 scripts/check_repository.py
+      - name: Validate Compose and network boundaries (no containers started)
+        run: python3 scripts/check_compose.py

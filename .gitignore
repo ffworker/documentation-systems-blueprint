@@ -1,0 +1,18 @@
+# Local configuration, secrets and operational data
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.dump
+*.sql
+*.tgz
+*.tar
+*.gz
+backups/
+private/
+work/
+__pycache__/
+.DS_Store

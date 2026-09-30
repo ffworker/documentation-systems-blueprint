@@ -1,0 +1,9 @@
+flowchart TB
+  Users[Readers and authors] -->|HTTPS| Proxy[Caddy TLS proxy]
+  Proxy -->|HTTP and WebSocket| App[Docmost]
+  App --> DB[(PostgreSQL)]
+  App --> Queue[(Redis)]
+  App --> Files[(Attachments)]
+  DB -. cold backup .-> Backup[Encrypted independent backup]
+  Queue -. cold backup .-> Backup
+  Files -. cold backup .-> Backup

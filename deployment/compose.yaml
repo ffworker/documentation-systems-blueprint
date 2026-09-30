@@ -1,0 +1,71 @@
+name: ${COMPOSE_PROJECT_NAME:-docs-blueprint}
+services:
+  docmost:
+    image: ${DOCMOST_IMAGE:?Set DOCMOST_IMAGE}
+    restart: unless-stopped
+    environment:
+      APP_URL: ${APP_URL:?Set APP_URL}
+      APP_SECRET: ${APP_SECRET:?Generate APP_SECRET}
+      DATABASE_URL: postgresql://docmost:${POSTGRES_PASSWORD:?Generate POSTGRES_PASSWORD}@db:5432/docmost
+      REDIS_URL: redis://redis:6379
+      STORAGE_DRIVER: local
+      DISABLE_TELEMETRY: "true"
+      MAIL_DRIVER: smtp
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      MAIL_FROM_ADDRESS: ${MAIL_FROM_ADDRESS:-docs@example.com}
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - attachments:/app/data/storage
+    networks: [edge, data]
+    logging: &logging
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+  db:
+    image: ${POSTGRES_IMAGE:?Set POSTGRES_IMAGE}
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: docmost
+      POSTGRES_USER: docmost
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Generate POSTGRES_PASSWORD}
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U docmost -d docmost']
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    volumes:
+      - database:/var/lib/postgresql
+    networks: [data]
+    logging: *logging
+  redis:
+    image: ${REDIS_IMAGE:?Set REDIS_IMAGE}
+    command: [redis-server, --appendonly, 'yes', --maxmemory-policy, noeviction]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+    volumes:
+      - redis:/data
+    networks: [data]
+    logging: *logging
+networks:
+  edge: {}
+  data:
+    internal: true
+volumes:
+  attachments: {}
+  database: {}
+  redis: {}

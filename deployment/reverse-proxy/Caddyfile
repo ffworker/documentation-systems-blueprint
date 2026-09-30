@@ -1,0 +1,5 @@
+{$DOCS_DOMAIN} {
+    encode zstd gzip
+    reverse_proxy docmost:3000
+    header X-Content-Type-Options nosniff
+}
